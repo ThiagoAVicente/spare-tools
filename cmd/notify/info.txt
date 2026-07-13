@@ -1,0 +1,15 @@
+notify — desktop notification when a command finishes
+
+Runs a command transparently (stdio inherited) and fires a desktop
+notification (D-Bus, org.freedesktop.Notifications) when it ends:
+normal urgency on success, critical (persistent) on failure, with the
+duration. Propagates the child's exit code, so it lives happily inside
+&& chains. For long builds, downloads, test suites.
+
+usage:
+  notify cargo build --release       # "✓ cargo build (2m14s)"
+  notify -- make -j8                 # -- separates tool flags from command
+  notify --sound make test           # with sound hint
+  notify --title "Backup" ./backup.sh
+
+exit codes: child's code propagated; 127 = command not found.

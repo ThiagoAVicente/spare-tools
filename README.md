@@ -2,7 +2,7 @@
 
 > tools nobody asked for. built in spare time, kept as spare parts.
 
-Six small Go CLI tools. Each does one thing, composes with pipes and `&&`,
+Small Go CLI tools. Each does one thing, composes with pipes and `&&`,
 exits with an honest code (0 = success), and has a decent `--help`.
 
 | Tool | What it does |
@@ -13,6 +13,7 @@ exits with an honest code (0 = success), and has a decent `--help`.
 | [`countdown`](#countdown) | visible terminal timer, made to compose with `&&` |
 | [`freshname`](#freshname) | next free filename (`report-2.pdf`), race-free with `--create` |
 | [`recent`](#recent) | recently modified files, sane exclusions, newest first |
+| [`spare`](#spare) | info about each tool, fetched from GitHub — no clone needed |
 
 ## Install
 
@@ -121,6 +122,19 @@ recent 1h -0 | xargs -0 ls -la
 ```
 
 Exclusions configurable in `~/.config/spare-tools/recent.toml`.
+
+## spare
+
+Every tool describes itself in a small `cmd/<tool>/info.txt`. `spare`
+fetches those files straight from this GitHub repo, so it works from any
+machine without a local clone.
+
+```sh
+spare                    # list all tools with one-line summaries
+spare waitfor            # full description of waitfor
+spare --ref v0.1 alone   # read from a branch/tag
+spare --repo user/fork countdown
+```
 
 ## Development
 

@@ -1,0 +1,14 @@
+countdown — visible terminal timer, made to compose
+
+Counts down with a progress bar, remaining time and ETA, then exits 0:
+countdown 25m && notify-send "break". Falls back to quiet mode (no UI)
+automatically when stdout is not a TTY, so it behaves inside scripts.
+
+usage:
+  countdown 25m                 # pomodoro
+  countdown 1h30m               # composed durations; also 90 (=90s), 1:30:00
+  countdown 10m --quiet         # no UI, a composable sleep
+  countdown 5m --up             # stopwatch counting up to 5m
+
+keys: space = pause/resume, q or Ctrl+C = cancel (exit 130), +/- = ±1min.
+exit codes: 0 = finished; 130 = canceled; 2 = bad duration.

@@ -7,7 +7,7 @@
 #   BINDIR=~/bin ./install.sh <tool>   custom install dir (default: ~/.local/bin)
 set -eu
 
-TOOLS="alone notify waitfor countdown freshname recent"
+TOOLS="alone notify waitfor countdown freshname recent spare"
 BINDIR="${BINDIR:-$HOME/.local/bin}"
 REPO_DIR="$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)"
 

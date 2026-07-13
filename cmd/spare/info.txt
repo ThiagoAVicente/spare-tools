@@ -1,0 +1,13 @@
+spare — info about the spare-tools, fetched from GitHub
+
+Prints the description of any spare-tool by fetching its info.txt
+straight from the GitHub repository — works from anywhere, no local
+clone needed. Without arguments it lists every available tool.
+
+usage:
+  spare                    # list all tools with a one-line summary
+  spare waitfor            # print waitfor's full description
+  spare --ref v0.1 alone   # read from a specific branch/tag
+  spare --repo user/fork countdown   # read from a fork
+
+exit codes: 0 = ok; 1 = unknown tool or network error.

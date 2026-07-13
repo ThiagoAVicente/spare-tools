@@ -1,0 +1,17 @@
+recent — what did I touch recently?
+
+Lists files modified (or created, with --created) inside a time window,
+newest first, with sane default exclusions (.git, node_modules, .cache,
+target, .venv, Trash...). Answers "where did the file I just saved or
+downloaded go?". Excluded dirs are pruned before descent, so it's fast.
+
+usage:
+  recent                        # last 10 min under ~, top 20
+  recent 1h ~/Downloads         # window and dir, either order
+  recent 1h --created           # birth time (btime) instead of mtime
+  recent 2h --all               # disable exclusions
+  recent 1h --dirs              # include directories
+  recent 1h -0 | xargs -0 ls -la
+
+config: ~/.config/spare-tools/recent.toml with exclude = ["...", ...]
+output: human format on a TTY; stable "mtime<TAB>bytes<TAB>path" in pipes.

@@ -1,0 +1,17 @@
+freshname — next free filename, no accidental overwrites
+
+Prints the first name that does NOT exist, following name-N.ext:
+report.pdf taken -> report-2.pdf -> report-3.pdf. Knows compound
+extensions (a.tar.gz -> a-2.tar.gz) and works on directories. With
+--create it creates the file atomically (O_CREAT|O_EXCL), so parallel
+scripts never receive the same name.
+
+usage:
+  freshname report.pdf                    # prints first free name
+  cp data.csv "$(freshname backup/data.csv)"
+  freshname --create log.txt              # race-free: creates and prints
+  freshname --sep _ --start 1 foto.jpg    # foto_1.jpg
+
+exit codes: 0 = ok; 1 = I/O error; 2 = usage.
+Note: without --create the check is inherently racy; use --create when
+concurrent processes may pick names.

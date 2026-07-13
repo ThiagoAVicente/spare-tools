@@ -1,0 +1,17 @@
+waitfor — block until a condition is true
+
+The complement of at(1): at waits for the clock, waitfor waits for the
+world. Exits 0 when every given condition holds (conditions AND together).
+Uses pidfd_open for --pid and inotify for file conditions — no polling
+where the kernel can notify.
+
+usage:
+  waitfor --pid 4223 && notify-send "done"   # process exited
+  waitfor --port 5432 && psql                # TCP port accepting connections
+  waitfor --file dl.iso --stable 5s          # file stopped changing for 5s
+  waitfor --exists /tmp/ready.flag
+  waitfor --gone /var/run/app.pid
+  waitfor --net && git push                  # internet is back
+  waitfor --port 8080 --timeout 30s          # give up after 30s
+
+exit codes: 0 = condition met; 124 = timeout; 130 = canceled.

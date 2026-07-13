@@ -1,0 +1,15 @@
+alone — run a command guaranteeing a single instance
+
+If another instance with the same lock name is already running, exits 75
+(EX_TEMPFAIL) without running the command; with --wait it queues instead.
+Built on kernel flock(2): the lock is released automatically when the
+process dies, even with kill -9. Made for cron jobs / systemd timers that
+must not overlap (backups, syncs, scrapers).
+
+usage:
+  alone backup.sh                    # already running? exit 75
+  alone --wait backup.sh             # wait for the other one, then run
+  alone --name sync rsync -a a/ b/   # explicit lock name
+  alone --list                       # active locks and PIDs
+
+exit codes: child's code propagated; 75 = lock busy.
