@@ -1,5 +1,7 @@
 # spare-tools
 
+![vibecoded](https://img.shields.io/badge/vibecoded-%E2%9C%A8-blueviolet)
+
 > tools nobody asked for. built in spare time, kept as spare parts.
 
 Small Go CLI tools. Each does one thing, composes with pipes and `&&`,
